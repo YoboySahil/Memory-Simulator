@@ -7,7 +7,6 @@ reg[3:0] code;
 reg[9:0] m_address, temp_m_address;
 reg[6:0] tag;
 reg[2:0] set_index;
-// integer set_index_int;
 reg[1:0] block_offset;
 reg[31:0] data;
 integer i, pc, r_ind, j, k;
@@ -31,12 +30,6 @@ initial begin
         data = instruction[31:0];
         is_read_hit = 1'b0;
         is_write_hit = 1'b0;
-        // set_index_int = set_index;
-        $displayb(instruction);
-        // $display(pc);
-        $displayb(tag);
-        $displayb(instruction[43:37]);
-        $displayb(code);
         if(code == 4'b0000)                                   //read instruction
         begin
             for(i=0; i<4; i++) begin
@@ -48,13 +41,10 @@ initial begin
                     is_read_hit = 1'b1;
                     global_variables.latest_use[set_index][i] = pc;
                 end
-                // global_variables.latest_use[set_index][i] = pc;
             end
 
             if(is_read_hit == 1'b0)                         //read miss
             begin
-                //replacement
-                // r_ind = (global_variables.latest_use[set_index][0] <= global_variables.latest_use[set_index][1])?0 : 1;
                 min=10000;
                 for(i=0;i<4;i++)begin
                     $display(i);
@@ -64,13 +54,9 @@ initial begin
                         r_ind=i;
                     end
                 end
-                // $display(r_ind);
-                
                 $display("READ MISS");
-                // $display("OUTPUT TO PROCESSOR ", global_variables.cache_memory_data[set_index][i][block_offset]);
                 if(global_variables.modified_bit[set_index][r_ind] == 1'b1)
                 begin
-                    $display("modified!!!");
                     temp_m_address[9:3] = global_variables.cache_memory_tag[set_index][r_ind];
                     temp_m_address[2:0] = set_index;
                     global_variables.main_memory[temp_m_address][block_offset] = global_variables.cache_memory_data[set_index][r_ind][block_offset];                   //Write allocate in read hit
@@ -103,8 +89,6 @@ initial begin
 
             if(is_write_hit == 1'b0)                        //write miss
             begin
-                //replacement
-                // r_ind = (global_variables.latest_use[set_index][0] <= global_variables.latest_use[set_index][1])?0 : 1;
                 min=10000;
                 for(i=0;i<4;i++)begin
                     if(global_variables.latest_use[set_index][i]<min)begin
@@ -113,8 +97,6 @@ initial begin
                     end
                 end
                 $display("WRITE MISS");
-                // $display(r_ind);
-                // $display(set_index);
                 if(global_variables.modified_bit[set_index][r_ind] == 1'b1)
                 begin
                     $display("replaced!!!");
@@ -140,11 +122,11 @@ initial begin
             $display("set no",i);
             for(j=0; j<4; j++)
             begin
-                $display("Way no ",j," Tag ",global_variables.cache_memory_tag[i][j]);
+                $display("Line No. :",j," Tag ",global_variables.cache_memory_tag[i][j]);
                 for(k=0;k<4;k++)begin
-                    $display("Byte no",k, global_variables.cache_memory_data[i][j][k]);
+                    $display("Word No. :",k, global_variables.cache_memory_data[i][j][k]);
                 end
-                $display("valid bit",global_variables.valid_bit[i][j],"modified bit",global_variables.modified_bit[i][j]);
+                $display("Valid Bit: ",global_variables.valid_bit[i][j],", Modified Bit: ",global_variables.modified_bit[i][j]);
                 
             end
         end
@@ -153,7 +135,7 @@ initial begin
         if(instruction == 47'b0)
         begin
             $display("PROGRAM HALTED");
-            $display(count, "/", pc);
+            $display("Hit Rate = ",count, "/", pc);
             $finish;
         end
         pc++;

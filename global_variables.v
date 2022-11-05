@@ -1,6 +1,4 @@
 module global_variables();
-    // integer n;
-    // initial n = 2;
     integer main_memory[1023:0][3:0];
     integer cache_memory_tag[7:0][3:0];
     integer cache_memory_data[7:0][3:0][3:0];

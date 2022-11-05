@@ -1,18 +1,21 @@
 #include <cstdlib>
 #include <iostream>
-using namespace std;
+#include <fstream>
   
 int main()
 {
     // This program will create same sequence of
     // random numbers on every program run
-    for (int i = 0; i < 101; i++)
+    std::ofstream code("code.txt");
+    int n = 100;
+    code<<"{\n";
+    for (int i = 0; i < n; i++)
         if(rand()%2==1){
-            cout<<"rd "<<rand()%4095<<endl;
+            code<<"rd "<<rand()%4095<<"\n";
         }
         else{
-            cout<<"wr "<<rand()%4095<<" "<<rand()%1000<<endl;
+            code<<"wr "<<rand()%4095<<" "<<rand()%100<<"\n";
         }
-  
+    code<<"}";
     return 0;
 }
