@@ -14,8 +14,10 @@ integer i, pc, r_ind, j, k;
 reg is_read_hit;
 reg is_write_hit;
 integer min;
+integer count;
 
 initial begin
+    count = 0;
     pc = 0;
     while(1)
     begin
@@ -146,9 +148,12 @@ initial begin
                 
             end
         end
+        if(is_read_hit | is_write_hit)
+            count++;
         if(instruction == 47'b0)
         begin
             $display("PROGRAM HALTED");
+            $display(count, "/", pc);
             $finish;
         end
         pc++;
