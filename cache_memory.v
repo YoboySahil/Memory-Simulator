@@ -17,8 +17,7 @@ integer count;
 
 initial begin
     count = 0;
-    pc = 0;
-    while(1)
+    for(pc=0; pc<10020; pc++)
     begin
         #10
         instruction = fetch.ic[pc];
@@ -47,13 +46,12 @@ initial begin
             begin
                 min=10000;
                 for(i=0;i<4;i++)begin
-                    $display(i);
-                    $display(global_variables.latest_use[set_index][i]);
                     if(global_variables.latest_use[set_index][i]<min)begin
                         min=global_variables.latest_use[set_index][i];
                         r_ind=i;
                     end
                 end
+                
                 $display("READ MISS");
                 if(global_variables.modified_bit[set_index][r_ind] == 1'b1)
                 begin
@@ -99,7 +97,6 @@ initial begin
                 $display("WRITE MISS");
                 if(global_variables.modified_bit[set_index][r_ind] == 1'b1)
                 begin
-                    $display("replaced!!!");
                     temp_m_address[9:3] = global_variables.cache_memory_tag[set_index][r_ind];
                     temp_m_address[2:0] = set_index;
                     global_variables.main_memory[temp_m_address][block_offset] = global_variables.cache_memory_data[set_index][r_ind][block_offset];                   //Write allocate in read hit
@@ -117,28 +114,14 @@ initial begin
                 global_variables.latest_use[set_index][r_ind] = pc;
             end
         end
-        for(i=0; i<8; i++)
-        begin
-            $display("set no",i);
-            for(j=0; j<4; j++)
-            begin
-                $display("Line No. :",j," Tag ",global_variables.cache_memory_tag[i][j]);
-                for(k=0;k<4;k++)begin
-                    $display("Word No. :",k, global_variables.cache_memory_data[i][j][k]);
-                end
-                $display("Valid Bit: ",global_variables.valid_bit[i][j],", Modified Bit: ",global_variables.modified_bit[i][j]);
-                
-            end
-        end
         if(is_read_hit | is_write_hit)
             count++;
         if(instruction == 47'b0)
         begin
             $display("PROGRAM HALTED");
-            $display("Hit Rate = ",count, "/", pc);
+            $display(count, "/", pc);
             $finish;
         end
-        pc++;
     end
 end
 

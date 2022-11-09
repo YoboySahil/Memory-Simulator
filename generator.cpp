@@ -7,7 +7,7 @@ int main()
     // This program will create same sequence of
     // random numbers on every program run
     std::ofstream code("code.txt");
-    int n = 100;
+    int n = 1e4+10;
     code<<"{\n";
     for (int i = 0; i < n; i++)
         if(rand()%2==1){
@@ -17,5 +17,6 @@ int main()
             code<<"wr "<<rand()%4095<<" "<<rand()%100<<"\n";
         }
     code<<"}";
+    std::cout<<"Random Instructions generated in code.txt";
     return 0;
 }

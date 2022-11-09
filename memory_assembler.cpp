@@ -41,6 +41,7 @@ int main()
             sourcecode>>line;
         }
         bincode<<(std::bitset<48>(0).to_string());
+        std::cout<<"Instructions in code.txt assembled to code.bin";
         sourcecode.close();
         bincode.close();
     }
