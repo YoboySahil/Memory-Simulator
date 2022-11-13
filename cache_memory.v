@@ -49,7 +49,7 @@ module cache_memory();
 
                 if(is_read_hit == 1'b0)                         //read-miss
                 begin
-                    min=10000;
+                    min=100000;
                     for(i=0;i<ways;i++)begin
                         if(global_variables.latest_use[set_index][i]<min)begin
                             min=global_variables.latest_use[set_index][i];
@@ -64,7 +64,7 @@ module cache_memory();
                         global_variables.modified_bit[set_index][r_ind] = 1'b0;
                     end
                     global_variables.cache_memory_tag[set_index][r_ind] = tag;
-                    for(i=0; i<ways; i++)
+                    for(i=0; i<(2**BO); i++)
                     begin
                         global_variables.cache_memory_data[set_index][r_ind][i] = global_variables.main_memory[m_address][i];
                     end
@@ -88,7 +88,7 @@ module cache_memory();
 
                 if(is_write_hit == 1'b0)                        //write-miss
                 begin
-                    min=10000;
+                    min=100000;
                     for(i=0;i<ways;i++)begin
                         if(global_variables.latest_use[set_index][i]<min)begin
                             min=global_variables.latest_use[set_index][i];
@@ -97,7 +97,6 @@ module cache_memory();
                     end
                     if(global_variables.modified_bit[set_index][r_ind] == 1'b1)
                     begin
-                        // $display("replaced!!!");
                         temp_m_address[MEM-3:SET] = global_variables.cache_memory_tag[set_index][r_ind];
                         temp_m_address[SET-1:0] = set_index;
                         global_variables.main_memory[temp_m_address][block_offset] = global_variables.cache_memory_data[set_index][r_ind][block_offset];                   //Write allocate in read hit
@@ -117,7 +116,7 @@ module cache_memory();
             end
             if(is_read_hit | is_write_hit)
                 count++;
-            if(instruction == 0 )
+            if(instruction == 0)
             begin
                 $display("PROGRAM HALTED");
                 $display(count, "/", pc);

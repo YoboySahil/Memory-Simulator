@@ -9,6 +9,7 @@
                 // $display(set_index);
                         // for(i=0; i<8; i++)
         // begin
+                        // $display("replaced!!!");
                 // pc++;
         // if( pc == 9999)
         // begin
