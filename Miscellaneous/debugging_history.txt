@@ -1,0 +1,114 @@
+    // $displayb(ic[0]);
+    // $displayb(ic[1]);
+// integer set_index_int;
+                // $display("OUTPUT TO PROCESSOR ", global_variables.cache_memory_data[set_index][r_ind][block_offset]);
+                    // $display("WRITE HIT");
+                //replacement
+                                // $display("WRITE MISS");
+                // $display(r_ind);
+                // $display(set_index);
+                        // for(i=0; i<8; i++)
+        // begin
+                // pc++;
+        // if( pc == 9999)
+        // begin
+        //     $display("PROGRAM HALTED");
+        //     $display(count, "/", pc);
+        //     // $finish;
+        // end
+        //     $display("set no",i);
+        //     for(j=0; j<4; j++)
+        //     begin
+        //         $display("Way no ",j," Tag ",global_variables.cache_memory_tag[i][j]);
+        //         for(k=0;k<4;k++)begin
+        //             $display("Byte no",k, global_variables.cache_memory_data[i][j][k]);
+        //         end
+        //         $display("valid bit",global_variables.valid_bit[i][j],"modified bit",global_variables.modified_bit[i][j]);
+                
+        //     end
+        // end
+                // r_ind = (global_variables.latest_use[set_index][0] <= global_variables.latest_use[set_index][1])?0 : 1;
+        // $display(pc);
+                    // $display("modified!!!");
+
+                        // $display(r_ind);
+                
+                // $display("READ MISS");
+                // $display("OUTPUT TO PROCESSOR ", global_variables.cache_memory_data[set_index][i][block_offset]);
+        // set_index_int = set_index;
+                // global_variables.latest_use[set_index][i] = pc;
+        $displayb(instruction);
+        $displayb(tag);
+        $displayb(instruction[43:37]);
+        $displayb(code);
+                // r_ind = (global_variables.latest_use[set_index][0] <= global_variables.latest_use[set_index][1])?0 : 1;
+                //replacement
+                // $display(r_ind);
+                // $display("OUTPUT TO PROCESSOR ", global_variables.cache_memory_data[set_index][i][block_offset]);
+                    $display("modified!!!");
+// integer set_index_int;
+
+                //replacement
+                // r_ind = (global_variables.latest_use[set_index][0] <= global_variables.latest_use[set_index][1])?0 : 1;
+                                // $display(r_ind);
+                // $display(set_index);
+                    // integer n;
+                                        // $displasy(i);
+                    // $display(global_variables.latest_use[set_index][i]);
+    // initial n = 2;
+        // pc = 0;
+            // pc = 0;
+        // set_index_int = set_index;
+                // global_variables.latest_use[set_index][i] = pc;
+                //replacement
+                // r_ind = (global_variables.latest_use[set_index][0] <= global_variables.latest_use[set_index][1])?0 : 1;
+                    // $display("READ HIT");
+                    // $display("OUTPUT TO PROCESSOR ", global_variables.cache_memory_data[set_index][i][block_offset]);
+    // while(1)
+            // $displayb(instruction);
+        // $display(pc);
+        // $displayb(tag);
+        // $displayb(instruction[43:37]);
+        // $displayb(code);
+    // while(1)
+            // set_index_int = set_index;
+        $displayb(instruction);
+        // $display(pc);
+        // $displayb(tag);
+        // $displayb(instruction[43:37]);
+        // $displayb(code);
+                // global_variables.latest_use[set_index][i] = pc;
+                //replacement
+                // r_ind = (global_variables.latest_use[set_index][0] <= global_variables.latest_use[set_index][1])?0 : 1;
+                                    // $displasy(i);
+                    // $display(global_variables.latest_use[set_index][i]);
+                // $display(r_ind);
+                // $display("OUTPUT TO PROCESSOR ", global_variables.cache_memory_data[set_index][i][block_offset]);
+                    $display("modified!!!");
+                //replacement
+                // r_ind = (global_variables.latest_use[set_index][0] <= global_variables.latest_use[set_index][1])?0 : 1;
+                // $display(r_ind);
+                // $display(set_index);\
+                    $display("replaced!!!");
+        // for(i=0; i<8; i++)
+        // begin
+        //     $display("set no",i);
+        //     for(j=0; j<4; j++)
+        //     begin
+        //         $display("Way no ",j," Tag ",global_variables.cache_memory_tag[i][j]);
+        //         for(k=0;k<4;k++)begin
+        //             $display("Byte no",k, global_variables.cache_memory_data[i][j][k]);
+        //         end
+        //         $display("valid bit",global_variables.valid_bit[i][j],"modified bit",global_variables.modified_bit[i][j]);
+                
+        //     end
+        // end
+        // pc++;
+    // initial begin
+    //     // $displayb(2**MEM);
+    //     // for(i=0; i<(2**MEM); i++) begin
+    //     //     for(j=0; j<n; j++) begin
+    //     //         main_memory[i][j]=;
+    //     //     end
+    //     // end
+    // end

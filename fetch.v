@@ -1,7 +1,9 @@
 module fetch();
 integer fd;
-reg[47:0] ic[10020:0];
+parameter N = 100000;
+reg[27:0] ic[N:0];
 initial begin
-    $readmemb("code.bin",ic);
+    //Enter the trace-sample file name accordingly
+    $readmemh("Traces/code(qs).bin",ic);
 end
 endmodule
